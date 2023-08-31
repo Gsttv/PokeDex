@@ -1,3 +1,8 @@
+
+const offset = 0
+const limit = 10
+const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+
 function convertPokemonListToHtml(pokemon) {
     return `
         <li class="pokemon">
@@ -18,16 +23,23 @@ function convertPokemonListToHtml(pokemon) {
 
 const pokemonList = document.getElementById('pokemonList')
 
-pokeAi.getPokemons.then((pokemon) => {
+pokeAi.getPokemons().then((pokemons = []) => {
 
-    const listItens = []
+    pokemonList.innerHTML += pokemons.map(convertPokemonListToHtml).join('')
     
-    for (let i = 0; i < pokemon.length; i++) {  // pecorrendo a lista e adcionadno cada elemento ao LI do HTML 
-        const pokemons = pokemon[i];
-        listItens.push(convertPokemonListToHtml(pokemons))
-        
 
-    }
+    // OS CODIGOS COMENTADO ABAIXO FAZEM A MSM COISA QUE A LINHA ACIMA
+
+    /* const newList = pokemons.map(convertPokemonListToHtml)
+       const newList = pokemons.map((pokemon) => convertPokemonListToHtml(pokemon)) // função que converte a lista em formato de json para html
+       const newHtml = newList.join('')
+       pokemonList.innerHTML += newHtml
+    */
+
+    /* for (let i = 0; i < pokemon.length; i++) {  // pecorrendo a lista e adcionadno cada elemento ao LI do HTML 
+         const pokemons = pokemon[i];
+         listItens.push(convertPokemonListToHtml(pokemons))
+     } */
 })
-    .catch((erro) => console.error(erro))
+
 
