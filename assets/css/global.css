@@ -10,7 +10,7 @@ body {
 .content {
     padding: 1rem;
     background-color: white;
-    height: 100vh;
+    height: auto;
     width: auto;
 }
 
