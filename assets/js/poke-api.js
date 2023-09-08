@@ -26,7 +26,7 @@ pokeAi.getPokemonsDetails = (pokemon) => {
 
 // metodo para retorna a lista de pokemons
 
-pokeAi.getPokemons = (offset = 0, limit = 5) => {
+pokeAi.getPokemons = (offset = 0, limit = 10) => {
     const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     return fetch(url) // metodo para fazer a requisição
         .then((response) => response.json()) // manipulando o body para um obj json
@@ -34,4 +34,5 @@ pokeAi.getPokemons = (offset = 0, limit = 5) => {
         .then((pokemons) => pokemons.map(pokeAi.getPokemonsDetails))
         .then((detailRequest => Promise.all(detailRequest)))
         .then((pokemonsDetails) => pokemonsDetails)
+
 }
